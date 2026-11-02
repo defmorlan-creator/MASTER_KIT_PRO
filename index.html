@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Business Master Kit Pro - aplikasi manajemen bisnis sederhana.">
+  <title>Business Master Kit Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">BM</div><div><b>BUSINESS MASTER</b><small>KIT PRO</small></div></div>
+      <div class="workspace"><span class="dot"></span><span id="companyLabel">Perusahaan Anda</span></div>
+      <nav>
+        <button class="nav-link active" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-link" data-page="sales"><span>↗</span> Penjualan</button>
+        <button class="nav-link" data-page="expenses"><span>↘</span> Pengeluaran</button>
+        <button class="nav-link" data-page="inventory"><span>▤</span> Inventaris</button>
+        <button class="nav-link" data-page="customers"><span>♙</span> Pelanggan</button>
+        <button class="nav-link" data-page="invoices"><span>▧</span> Invoice</button>
+        <button class="nav-link" data-page="reports"><span>▥</span> Laporan</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-link" data-page="settings"><span>⚙</span> Pengaturan</button>
+        <div class="sidebar-note">BUSINESS CONTROL CENTER<br><small>Versi 1.0 • Data tersimpan di perangkat ini</small></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+        <div><div class="eyebrow" id="eyebrow">OVERVIEW</div><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><span class="today" id="todayLabel"></span><div class="avatar">BM</div></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-row"><div><h2>Selamat datang kembali.</h2><p>Pantau kondisi bisnis Anda dari satu tempat.</p></div><button class="btn primary" data-go="sales">＋ Catat penjualan</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total penjualan</span><span class="stat-icon teal">↗</span></div><strong id="statSales">Rp0</strong><small>Akumulasi transaksi tercatat</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Total pengeluaran</span><span class="stat-icon orange">↘</span></div><strong id="statExpenses">Rp0</strong><small>Akumulasi biaya tercatat</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Laba estimasi</span><span class="stat-icon blue">◈</span></div><strong id="statProfit">Rp0</strong><small>Penjualan dikurangi pengeluaran</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Produk aktif</span><span class="stat-icon purple">▤</span></div><strong id="statProducts">0</strong><small id="lowStockText">0 stok perlu diperiksa</small></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel chart-panel"><div class="panel-heading"><div><h3>Ringkasan penjualan</h3><p>Enam bulan terakhir berdasarkan tanggal transaksi</p></div><span class="pill">6 BULAN</span></div><canvas id="salesChart" height="230"></canvas></article>
+          <article class="panel"><div class="panel-heading"><div><h3>Kondisi inventaris</h3><p>Produk dengan stok terbatas</p></div><button class="text-btn" data-go="inventory">Lihat semua</button></div><div id="lowStockList" class="compact-list"></div></article>
+        </div>
+        <article class="panel"><div class="panel-heading"><div><h3>Transaksi terbaru</h3><p>Aktivitas penjualan yang baru dicatat</p></div><button class="text-btn" data-go="sales">Buka penjualan →</button></div><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>No. transaksi</th><th>Pelanggan</th><th>Status</th><th class="right">Total</th></tr></thead><tbody id="recentSales"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-sales">
+        <div class="page-intro"><div><h2>Penjualan</h2><p>Kelola transaksi dan pantau status pembayaran.</p></div><button class="btn primary" id="addSaleBtn">＋ Tambah transaksi</button></div>
+        <div class="toolbar"><input id="salesSearch" placeholder="Cari transaksi atau pelanggan..."><select id="salesFilter"><option value="all">Semua status</option><option value="Lunas">Lunas</option><option value="Belum lunas">Belum lunas</option></select><button class="btn secondary" id="salesCsv">Ekspor CSV</button></div>
+        <article class="panel"><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>No. transaksi</th><th>Pelanggan</th><th>Item</th><th>Status</th><th class="right">Total</th><th></th></tr></thead><tbody id="salesRows"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-expenses">
+        <div class="page-intro"><div><h2>Pengeluaran</h2><p>Catat biaya agar arus kas lebih terkontrol.</p></div><button class="btn primary" id="addExpenseBtn">＋ Tambah pengeluaran</button></div>
+        <div class="toolbar"><input id="expenseSearch" placeholder="Cari kategori atau keterangan..."><button class="btn secondary" id="expenseCsv">Ekspor CSV</button></div>
+        <article class="panel"><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Metode</th><th class="right">Jumlah</th><th></th></tr></thead><tbody id="expenseRows"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-inventory">
+        <div class="page-intro"><div><h2>Inventaris</h2><p>Kelola produk, harga jual, dan ketersediaan stok.</p></div><button class="btn primary" id="addProductBtn">＋ Tambah produk</button></div>
+        <div class="toolbar"><input id="productSearch" placeholder="Cari nama produk atau SKU..."><button class="btn secondary" id="productCsv">Ekspor CSV</button></div>
+        <article class="panel"><div class="table-wrap"><table><thead><tr><th>Produk</th><th>SKU</th><th>Harga jual</th><th>Stok</th><th>Status</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-customers">
+        <div class="page-intro"><div><h2>Pelanggan</h2><p>Bangun database pelanggan yang tertata.</p></div><button class="btn primary" id="addCustomerBtn">＋ Tambah pelanggan</button></div>
+        <div class="toolbar"><input id="customerSearch" placeholder="Cari nama, email, atau nomor..."><button class="btn secondary" id="customerCsv">Ekspor CSV</button></div>
+        <article class="panel"><div class="table-wrap"><table><thead><tr><th>Nama</th><th>Kontak</th><th>Email</th><th>Perusahaan / kota</th><th></th></tr></thead><tbody id="customerRows"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-invoices">
+        <div class="page-intro"><div><h2>Invoice</h2><p>Buat dokumen tagihan sederhana untuk pelanggan.</p></div><button class="btn primary" id="addInvoiceBtn">＋ Buat invoice</button></div>
+        <article class="panel"><div class="table-wrap"><table><thead><tr><th>No. invoice</th><th>Tanggal</th><th>Pelanggan</th><th>Status</th><th class="right">Total</th><th></th></tr></thead><tbody id="invoiceRows"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-reports">
+        <div class="page-intro"><div><h2>Laporan bisnis</h2><p>Ringkasan angka berdasarkan seluruh data yang tersimpan.</p></div><button class="btn secondary" id="reportCsv">Unduh ringkasan CSV</button></div>
+        <div class="stats-grid report-stats"><article class="stat-card"><span>Total transaksi</span><strong id="reportCount">0</strong></article><article class="stat-card"><span>Rata-rata transaksi</span><strong id="reportAverage">Rp0</strong></article><article class="stat-card"><span>Jumlah pelanggan</span><strong id="reportCustomers">0</strong></article><article class="stat-card"><span>Nilai inventaris (harga jual)</span><strong id="reportInventory">Rp0</strong></article></div>
+        <article class="panel"><div class="panel-heading"><div><h3>Catatan laporan</h3><p>Interpretasi otomatis dari data yang tersedia</p></div></div><div id="reportNotes" class="report-notes"></div></article>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-intro"><div><h2>Pengaturan</h2><p>Personalisasi identitas bisnis dan kelola data lokal.</p></div></div>
+        <div class="settings-grid"><article class="panel settings-card"><h3>Profil perusahaan</h3><p>Informasi ini digunakan pada tampilan aplikasi dan invoice.</p><form id="settingsForm" class="form-grid"><label>Nama perusahaan<input id="companyName" required placeholder="Contoh: PT Maju Bersama"></label><label>Email bisnis<input id="companyEmail" type="email" placeholder="admin@perusahaan.com"></label><label>Nomor telepon<input id="companyPhone" placeholder="08xxxxxxxxxx"></label><label>Alamat<textarea id="companyAddress" rows="3" placeholder="Alamat perusahaan"></textarea></label><button class="btn primary">Simpan pengaturan</button></form></article>
+        <article class="panel settings-card"><h3>Manajemen data</h3><p>Data tersimpan di penyimpanan browser pada perangkat ini. Buat cadangan secara berkala.</p><div class="settings-actions"><button class="btn secondary" id="backupBtn">Unduh backup data</button><label class="btn secondary file-label">Pulihkan backup<input type="file" id="restoreInput" accept=".json,application/json" hidden></label><button class="btn danger" id="resetBtn">Hapus seluruh data aplikasi</button></div><p class="notice">Penting: aplikasi versi ini belum menggunakan server, login multi-user, atau sinkronisasi antarperangkat. Jangan gunakan untuk menyimpan data rahasia atau data sensitif perusahaan.</p></article></div>
+      </section>
+      <footer>BUSINESS MASTER KIT PRO <span>•</span> Alat bantu operasional bisnis</footer>
+    </main>
+  </div>
+
+  <dialog id="modal"><form method="dialog" id="modalForm"><div class="modal-head"><div><span class="eyebrow">BUSINESS MASTER KIT PRO</span><h2 id="modalTitle">Tambah data</h2></div><button class="icon-btn" value="cancel" aria-label="Tutup">×</button></div><div id="modalBody" class="modal-body"></div><div class="modal-actions"><button class="btn secondary" value="cancel">Batal</button><button class="btn primary" id="modalSubmit" value="default">Simpan</button></div></form></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+BUSINESS MASTER KIT PRO — PANDUAN IMPLEMENTASI
+================================================
+
+ISI PAKET
+- index.html : halaman dan struktur aplikasi
+- style.css  : desain navy + teal dan tampilan responsif
+- config.js  : pengaturan nama aplikasi, mata uang, batas stok, penyimpanan
+- app.js     : fungsi aplikasi
+- PANDUAN.txt: panduan ini
+
+A. MENJALANKAN DI KOMPUTER
+1. Ekstrak file ZIP ke satu folder, misalnya Business-Master-Kit-Pro.
+2. Pastikan index.html, style.css, config.js, dan app.js berada di folder yang sama.
+3. Klik dua kali index.html atau klik kanan > Open with > Chrome.
+4. Masuk ke Pengaturan, isi nama dan identitas perusahaan.
+5. Tambahkan produk, pelanggan, penjualan, pengeluaran, lalu buat invoice.
+6. Coba ekspor CSV dan backup data dari menu Pengaturan.
+
+B. MENGUNGGAH KE GITHUB PAGES
+1. Login ke https://github.com dan buat repository baru.
+2. Pilih Public, lalu Create repository.
+3. Klik Add file > Upload files.
+4. Unggah KEEMPAT file website: index.html, style.css, config.js, app.js.
+   (PANDUAN.txt boleh ikut diunggah.)
+5. Klik Commit changes.
+6. Buka Settings > Pages.
+7. Pada Build and deployment, pilih Deploy from a branch.
+8. Pilih branch main dan folder /(root), lalu Save.
+9. Tunggu proses selesai. Alamat website muncul di bagian Pages.
+10. Buka alamat tersebut dan tes semua menu dari HP dan komputer.
+
+C. CARA MENJUAL DI LYNK.ID
+1. Buat halaman produk baru di Lynk.id.
+2. Nama: BUSINESS MASTER KIT PRO – Aplikasi Manajemen Bisnis.
+3. Unggah gambar sampul produk yang dibuat sendiri.
+4. Isi deskripsi fitur, kompatibilitas, dan batasan produk.
+5. Jenis produk: produk digital / file digital (sesuaikan opsi Lynk.id).
+6. Siapkan file ZIP sebagai file yang diterima pembeli, atau berikan link website demo.
+7. Harga awal yang dapat diuji: Rp49.000–Rp99.000. Ini hanya saran harga, bukan jaminan penjualan.
+8. Uji alur pembelian dan pengiriman file sebelum mempromosikan.
+
+D. PENTING — BATASAN VERSI 1.0
+- Ini adalah aplikasi front-end statis. Data disimpan di localStorage browser/perangkat yang digunakan.
+- Data tidak otomatis tersinkron antara HP, laptop, atau pengguna lain.
+- Tidak ada login, server database, multi-cabang, multi-user, payment gateway, atau kontrol lisensi.
+- Jangan gunakan untuk data sensitif atau menjanjikan keamanan/backup tingkat perusahaan.
+- Jika cache/browser dihapus, data lokal dapat hilang. Gunakan Backup Data secara rutin.
+- Perhitungan "laba estimasi" adalah penjualan dikurangi pengeluaran yang dicatat, belum memperhitungkan HPP, pajak, depresiasi, piutang, dan penyesuaian akuntansi.
+- Invoice adalah dokumen sederhana, bukan faktur pajak.
+- Aplikasi memuat Google Fonts dari internet; font cadangan tetap tersedia jika offline.
+
+E. SEBELUM DIJUAL
+[ ] Uji semua menu di Chrome desktop dan mobile.
+[ ] Uji tambah/hapus data dan ekspor CSV.
+[ ] Uji backup dan restore pada browser.
+[ ] Uji cetak invoice dan izinkan pop-up.
+[ ] Ganti identitas merek bila diperlukan.
+[ ] Buat screenshot asli aplikasi untuk gambar produk.
+[ ] Tulis batasan versi 1.0 secara jujur di halaman penjualan.
+[ ] Jangan mengiklankan fitur login cloud, keamanan enterprise, atau sinkronisasi karena belum tersedia.
+
+F. PENGEMBANGAN VERSI BERIKUTNYA
+Untuk menjadikannya aplikasi SaaS profesional multi-pengguna, diperlukan backend/API, database terpusat, autentikasi, kontrol akses, backup server, audit log, kebijakan privasi, dan pengujian keamanan. Hosting statis GitHub Pages saja tidak menyediakan fitur tersebut.
